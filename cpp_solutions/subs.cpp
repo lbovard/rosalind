@@ -1,18 +1,17 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include "rosalind.h"
 
 int main() {
   std::string DNA,sub;
   std::cin >> DNA;
   std::cin >> sub;
-  unsigned int n,m;
-  n=DNA.length();
-  m=sub.length();
-  for(unsigned int i=0;i<n-m;i++) {
-    if(DNA.substr(i,m)==sub) {
-      std::cout << i+1 << " ";
-    }
-  }
-  std::cout<<std::endl;
+	std::vector<unsigned int> locs;
+	locs=substring_loc(DNA,sub);
+	for(auto &x: locs) {
+		std::cout << x << " ";
+	}
+	std::cout << std::endl;
   return 0;
 }

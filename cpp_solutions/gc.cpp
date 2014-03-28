@@ -3,11 +3,18 @@
 #include "rosalind.h"
 
 int main() {
-  std::string DNA,RNA;
-  std::cin >> DNA;
-  RNA=DNA_to_RNA(DNA);
-  std::cout << RNA;
-  std::cout << std::endl;
+	DNA_list data;
+	DNA_label label;
+	filename input_fn="rosalind_gc.txt";
+	read_FASTA(data,label,input_fn);
+	std::vector<unsigned int> DNA_data;	
+	for(unsigned int i=0;i<data.size();++i) {
+		DNA_data=DNA_stats(data[i]);
+		for(auto& x: DNA_data) {
+			std::cout << x << " ";
+		}
+		std::cout << std::endl;
+	}
   return 0;
 
 }

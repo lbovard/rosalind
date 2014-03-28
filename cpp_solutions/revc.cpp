@@ -1,32 +1,17 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include "rosalind.h"
 
 int main() {
-  std::string RNA,RNA_C;
-  std::getline(std::cin, RNA); 
-  for(auto it=RNA.rbegin();it!=RNA.rend();++it) {
-    switch(*it) {
-      case 'A':
-        RNA_C+='T';
-        break;
-      case 'T':
-        RNA_C+='A';
-        break;
-      case 'G':
-        RNA_C+='C';
-        break;
-      case 'C':
-        RNA_C+='G';
-        break; 
-      default:
-        break;
-    }
-  }
-  for(auto& x:RNA_C) {
+  std::string DNA,DNA_C;
+	std::cin >> DNA;
+	DNA_C=DNA_compliment(DNA);
+	
+  for(auto& x:DNA_C) {
     std::cout << x;
   }
-  std::cout << '\n';
+  std::cout << std::endl;
 
   return 0;
 }
