@@ -1,2 +1,1 @@
->Rosalind_87
-CAGCATGGTATCACAGCAGAG
+aab$baa$baaa$aaaab
