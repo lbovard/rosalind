@@ -6,8 +6,7 @@
 struct node {
 	int V;
 	struct node *next;
-	int pre;
-	int post;
+  int value;
 };
 struct Queue {
 	int head;
@@ -56,6 +55,19 @@ void print_queue(struct Queue *q) {
 	printf("\n");
 }
 
+void print_adj(struct node *adj[] ,int n) {
+	int i=0;
+	struct node *t;
+	for(i=1;i<=n;i++) {
+		printf("%d -> ",i);
+		t=adj[i];
+		while(t->next != t) {
+			printf("%d (%d),  ",t->V,t->value);
+			t=t->next;
+		}
+		printf("\n");
+	}
+}
 void bfs(struct node *adj[], int V,int k) {
   struct node *t;
   struct Queue *q;
@@ -84,8 +96,7 @@ void bfs(struct node *adj[], int V,int k) {
 }
 int main() {
   struct node *END,*t;
-  int A,B;
-  int c1,c2;
+  int A,B,C;
   struct node *adj[MAX_VERT+5];
   int i;
   int *val;
@@ -97,11 +108,12 @@ int main() {
     adj[i]=END;
   }
   for(i=0;i<NE;i++) {
-    scanf("%d %d",&A,&B); 
-    c1=A;c2=B;
+    scanf("%d %d %d",&A,&B,&C); 
     t=(struct node*)malloc(sizeof(*t));	
-    t->V=c2;t->next=adj[c1];adj[c1]=t;
+    t->V=B;t->next=adj[A];t->value=C;
+    adj[A]=t;
   }
+  print_adj(adj,NV);
   bfs(adj,NV,1);
   return 0;
 }
